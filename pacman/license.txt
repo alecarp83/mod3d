@@ -1,0 +1,5 @@
+Model Information:
+* title:	Pacman animated
+* source:	pacman-animated-e5e8dfb614da4fa69182f252fa4274a8
+* author:	Luall_Studio
+
