@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desinteligencia Artificial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f0f23;
+            color: #00ff41;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 40, 0, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 40, 0, 0.2) 0%, transparent 20%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .glitch-container {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+            animation: pulse 3s infinite alternate;
+        }
+
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: "Desinteligencia Artificial";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-animation 5s infinite;
+            color: #ff00ff;
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-animation 3s infinite reverse;
+            color: #00ffff;
+            z-index: -2;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            color: #8f8;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        .search-container {
+            background-color: rgba(15, 30, 15, 0.8);
+            border-radius: 50px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+            border: 1px solid #00aa33;
+            transition: all 0.3s ease;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .search-container:focus-within {
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.5);
+            border: 1px solid #00ff41;
+            transform: scale(1.02);
+        }
+
+        #search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 20px 25px;
+            font-size: 1.3rem;
+            color: #00ff41;
+            outline: none;
+            width: 100%;
+        }
+
+        #search-input::placeholder {
+            color: #008833;
+            font-style: italic;
+        }
+
+        #search-btn {
+            background-color: #003300;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-right: 5px;
+            transition: all 0.3s ease;
+            color: #00ff41;
+            font-size: 1.5rem;
+        }
+
+        #search-btn:hover {
+            background-color: #005500;
+            transform: rotate(90deg);
+            box-shadow: 0 0 15px #00ff41;
+        }
+
+        .instructions {
+            margin-top: 40px;
+            color: #8f8;
+            font-size: 1rem;
+            max-width: 600px;
+            line-height: 1.6;
+            padding: 15px;
+            background-color: rgba(0, 30, 0, 0.3);
+            border-radius: 10px;
+            border-left: 3px solid #00ff41;
+        }
+
+        .footer {
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: #008833;
+            text-align: center;
+        }
+
+        .matrix-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        @keyframes pulse {
+            0% { text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41; }
+            100% { text-shadow: 0 0 15px #00ff41, 0 0 30px #00ff41, 0 0 40px #00ff41; }
+        }
+
+        @keyframes glitch-animation {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            #search-input {
+                font-size: 1.1rem;
+                padding: 15px 20px;
+            }
+            
+            #search-btn {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .instructions {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+            
+            .search-container {
+                border-radius: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-effect" id="matrix"></div>
+    
+    <div class="container">
+        <div class="glitch-container">
+            <h1 class="glitch">Desinteligencia Artificial</h1>
+        </div>
+        
+        <p class="tagline">El buscador más inútil que podrías encontrar</p>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Pregunta cualquier boludes" autocomplete="off">
+            <button id="search-btn">
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        
+        <div class="instructions">
+            <p><strong>Instrucciones:</strong> Escribe cualquier pregunta absurda o sin sentido en el buscador y presiona el botón de flecha (o la tecla Enter) para obterner tu búsqueda. ¡Perfecto para cuando necesitas respuestas a las preguntas más inútiles!</p>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 Desinteligencia Artificial - Porque a veces las preguntas tontas necesitan respuestas serias</p>
+        </div>
+    </div>
+
+    <script>
+        // Elementos del DOM
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        
+        // Redirigir a Google con la búsqueda
+        function performSearch() {
+            const query = searchInput.value.trim();
+            
+            // Si el campo está vacío, mostrar un placeholder aleatorio
+            if (!query) {
+                const placeholders = [
+                    "¿Por qué los pingüinos no vuelan?",
+                    "¿Cuántas galletas caben en un frasco?",
+                    "¿Qué son los unicornios?",
+                    "¿Pueden los peces toser?",
+                    "¿Por qué la pizza es redonda?",
+                    "¿Qué sueñan los gatos?",
+                    "¿Las plantas tienen sentimientos?",
+                    "¿Cómo sería un mundo de chocolate?"
+                ];
+                const randomPlaceholder = placeholders[Math.floor(Math.random() * placeholders.length)];
+                searchInput.value = randomPlaceholder;
+            }
+            
+            // Tomar el valor final (sea el escrito o el placeholder)
+            const finalQuery = searchInput.value.trim();
+            
+            // Redirigir a Google con la búsqueda
+            if (finalQuery) {
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(finalQuery)}`, '_blank');
+            }
+        }
+        
+        // Eventos
+        searchBtn.addEventListener('click', performSearch);
+        
+        searchInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        // Efecto Matrix en el fondo
+        function createMatrixEffect() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            const matrixContainer = document.getElementById('matrix');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            matrixContainer.appendChild(canvas);
+            
+            const characters = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+            const charsArray = characters.split("");
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.floor(Math.random() * canvas.height / fontSize) * fontSize;
+            }
+            
+            function drawMatrix() {
+                context.fillStyle = "rgba(15, 15, 35, 0.04)";
+                context.fillRect(0, 0, canvas.width, canvas.height);
+                
+                context.fillStyle = "#00ff41";
+                context.font = `${fontSize}px monospace`;
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = charsArray[Math.floor(Math.random() * charsArray.length)];
+                    context.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(drawMatrix, 50);
+            
+            // Redimensionar canvas al cambiar tamaño de ventana
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+        
+        // Inicializar efecto Matrix cuando la página cargue
+        window.addEventListener('load', createMatrixEffect);
+        
+        // Efecto de glitch aleatorio en el título
+        setInterval(() => {
+            const glitch = document.querySelector('.glitch');
+            glitch.style.animation = 'none';
+            setTimeout(() => {
+                glitch.style.animation = '';
+            }, 100);
+        }, 3000);
+    </script>
+</body>
+</html>
